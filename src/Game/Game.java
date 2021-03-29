@@ -59,8 +59,8 @@ public class Game implements Runnable {
     private void init() {
         gameWindow = new GameWindow(title, width, height);
         Assets.init();
-        gameCamera = new GameCamera(this,0,0);
         handler = new Handler(this);
+        gameCamera = new GameCamera(handler,0,0);
         gameWindow.getFrame().addKeyListener(keyManager);   //make key manager listening on game window
 
         // pass own object to GameSate, why? GameState has field player which need "game" (this) to be init.
