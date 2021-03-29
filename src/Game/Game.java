@@ -1,9 +1,6 @@
 package Game;
 
-import GUI.Assets;
-import GUI.GameWindow;
-import GUI.ImageLoader;
-import GUI.SpriteSheetLoader;
+import GUI.*;
 import Input.KeyManager;
 import State.GameState;
 import State.MenuState;
@@ -17,6 +14,23 @@ public class Game implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
     private String title;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     private int width, height;
     private GameWindow gameWindow;
     private BufferStrategy bs;
@@ -28,6 +42,8 @@ public class Game implements Runnable {
 
     // key input
     private KeyManager keyManager;
+    // game camera
+    private GameCamera gameCamera;
 
 
     public Game(String title, int width, int height) {
@@ -41,6 +57,7 @@ public class Game implements Runnable {
     private void init() {
         gameWindow = new GameWindow(title, width, height);
         Assets.init();
+        gameCamera = new GameCamera(this,0,0);
         gameWindow.getFrame().addKeyListener(keyManager);   //make key manager listening on game window
 
         // pass own object to GameSate, why? GameState has field player which need "game" (this) to be init.
@@ -118,6 +135,7 @@ public class Game implements Runnable {
     public KeyManager getKeyManager(){
         return keyManager;
     }
+    public GameCamera getGameCamera(){return gameCamera;}
 
     //Set running state in case of game already start
     public synchronized void start() {
