@@ -2,6 +2,7 @@ package Game;
 
 import GUI.*;
 import Input.KeyManager;
+import Input.MouseManager;
 import State.GameState;
 import State.MenuState;
 import State.State;
@@ -37,11 +38,13 @@ public class Game implements Runnable {
     private Graphics g;
 
     //state
-    private State gameState;
-    private State menuState;
+    public State gameState;
+    public State menuState;
 
     // key input
     private KeyManager keyManager;
+    // mouse input
+    private MouseManager mouseManager;
     // game camera
     private GameCamera gameCamera;
     //handler
@@ -53,6 +56,7 @@ public class Game implements Runnable {
         this.width = width;
         this.height = height;
         keyManager = new KeyManager();  //init key manaager, my own key listener logic e.g. WASD as up down left right.
+        mouseManager = new MouseManager();
     }
 
     // init GUI detail here,  also init assets for later use.
@@ -62,14 +66,17 @@ public class Game implements Runnable {
         handler = new Handler(this);
         gameCamera = new GameCamera(handler,0,0);
         gameWindow.getFrame().addKeyListener(keyManager);   //make key manager listening on game window
-
+        gameWindow.getFrame().addMouseListener(mouseManager);
+        gameWindow.getFrame().addMouseMotionListener(mouseManager);
+        gameWindow.getCanvas().addMouseListener(mouseManager);
+        gameWindow.getCanvas().addMouseMotionListener(mouseManager);
         // pass own object to GameSate, why? GameState has field player which need "game" (this) to be init.
         // -why GameState need to have player field? GameState need player.render() and player.tick();
         // ---why player need game object? want to know key input information from game object keyManager.
 
         gameState = new GameState(handler); //set game state
         menuState = new MenuState(handler);
-        State.setState(gameState);
+        State.setState(menuState);
     }
 
     @Override
@@ -138,6 +145,11 @@ public class Game implements Runnable {
     public KeyManager getKeyManager(){
         return keyManager;
     }
+
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
+
     public GameCamera getGameCamera(){return gameCamera;}
 
     //Set running state in case of game already start

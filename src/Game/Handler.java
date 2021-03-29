@@ -2,6 +2,7 @@ package Game;
 
 import GUI.GameCamera;
 import Input.KeyManager;
+import Input.MouseManager;
 import World.World;
 
 public class Handler {
@@ -42,5 +43,8 @@ public class Handler {
 
     public GameCamera getGameCamera(){
         return game.getGameCamera();
+    }
+    public MouseManager getMouseManager(){
+        return game.getMouseManager();
     }
 }

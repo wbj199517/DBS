@@ -15,7 +15,7 @@ public class World {
     private int spawnX, spawnY;
     private int[][] tiles_position;
     private EntityManager entityManager;
-    public World(Handler handler, String path) {
+    public  World(Handler handler, String path) {
         this.handler = handler;
         entityManager = new EntityManager(handler,new Player(handler,100,100));
         entityManager.addEntity(new Tree(handler,100,200));
