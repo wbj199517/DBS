@@ -60,8 +60,13 @@ public abstract class Creature extends Entity {
     }
 
     public void move() {
-        moveX();
-        moveY();
+        if(!checkEntityCollision(xMove,0f)){
+            moveX();
+        }
+        if(!checkEntityCollision(0f,yMove)){
+            moveY();
+        }
+
     }
 
     public void moveX() {
