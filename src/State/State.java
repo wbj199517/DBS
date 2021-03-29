@@ -3,7 +3,7 @@ package State;
 import Game.Game;
 
 import java.awt.*;
-
+import Game.Handler;
 public abstract class State {
     private static State CURRENT_STATE = null;
 
@@ -16,9 +16,9 @@ public abstract class State {
 
     //class
 
-    protected Game game;
-    public State(Game game){
-        this.game = game;
+    protected Handler handler;
+    public State(Handler handler){
+        this.handler = handler;
     }
     public abstract void tick();
     public abstract void render(Graphics g);

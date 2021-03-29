@@ -44,6 +44,8 @@ public class Game implements Runnable {
     private KeyManager keyManager;
     // game camera
     private GameCamera gameCamera;
+    //handler
+    private Handler handler;
 
 
     public Game(String title, int width, int height) {
@@ -58,14 +60,15 @@ public class Game implements Runnable {
         gameWindow = new GameWindow(title, width, height);
         Assets.init();
         gameCamera = new GameCamera(this,0,0);
+        handler = new Handler(this);
         gameWindow.getFrame().addKeyListener(keyManager);   //make key manager listening on game window
 
         // pass own object to GameSate, why? GameState has field player which need "game" (this) to be init.
         // -why GameState need to have player field? GameState need player.render() and player.tick();
         // ---why player need game object? want to know key input information from game object keyManager.
 
-        gameState = new GameState(this); //set game state
-        menuState = new MenuState(this);
+        gameState = new GameState(handler); //set game state
+        menuState = new MenuState(handler);
         State.setState(gameState);
     }
 

@@ -2,7 +2,7 @@ package Entity.Creature;
 
 import Entity.Entity;
 import Game.Game;
-
+import Game.Handler;
 import java.awt.*;
 
 public abstract class Creature extends Entity {
@@ -48,8 +48,8 @@ public abstract class Creature extends Entity {
         this.speed = speed;
     }
 
-    public Creature(Game game, float x, float y, int width, int height) {
-        super(game, x, y, width, height);
+    public Creature(Handler handler, float x, float y, int width, int height) {
+        super(handler, x, y, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
