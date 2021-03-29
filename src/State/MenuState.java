@@ -1,26 +1,38 @@
 package State;
 
+import GUI.Assets;
 import Game.Game;
 
 import java.awt.*;
 import Game.Handler;
-public class MenuState extends State {
+import UI.ClickListener;
+import UI.UIImageButton;
+import UI.UIManager;
 
+public class MenuState extends State {
+    private UIManager uiManager;
     public MenuState(Handler handler){
         super(handler);
+        uiManager=new UIManager(handler);
+        handler.getMouseManager().setUiManager(uiManager);
+        uiManager.addObject(new UIImageButton(200, 200, 128, 64, Assets.BUTTON_START, new ClickListener() {
+            @Override
+            public void onClick() {
+                handler.getMouseManager().setUiManager(null);
+                State.setState(handler.getGame().gameState);
+
+            }
+        }));
 
     }
 
     @Override
     public void tick() {
-        if(handler.getMouseManager().isLeftPressed()){
-            State.setState(handler.getGame().gameState);
-        }
+        uiManager.tick();
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.red);
-        g.fillRect(handler.getMouseManager().getMouseX(),handler.getMouseManager().getMouseY(),8,8);
+        uiManager.render(g);
     }
 }
