@@ -1,16 +1,19 @@
 package World;
 
+import Game.Game;
 import Tile.Tile;
 import Utils.Utils;
 
 import java.awt.*;
 
 public class World {
+    private Game game;
     private int width,height;
     private int spawnX, spawnY;
     private int[][] tiles_position;
 
-    public World(String path){
+    public World(Game game,String path){
+        this.game = game;
         loadWorld(path);
     }
     public void tick(){
@@ -44,5 +47,5 @@ public class World {
                tiles_position[x][y] = Utils.parseInt(tokens[(x+y*width)+4]);
            }
        }
-    };
+    }
 }
