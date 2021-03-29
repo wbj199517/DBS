@@ -13,8 +13,8 @@ public class Assets {
     public static void init() {
         MAIN_CHAR = ImageLoader.loadImage("/textures/Shitty_Wizard.png");
         BUTTON_START = new BufferedImage[2];
-        BUTTON_START[0] = ImageLoader.loadImage("/textures/start_button_0.jpg");
-        BUTTON_START[1] = ImageLoader.loadImage("/textures/start_button_1.jpg");
+        BUTTON_START[0] = ImageLoader.loadImage("/textures/start_button_0.jpeg");
+        BUTTON_START[1] = ImageLoader.loadImage("/textures/start_button_1.jpeg");
         //animation assets
         PLAYER_DOWN = new BufferedImage[2];
         PLAYER_DOWN[0] = ImageLoader.loadImage("/textures/Shitty_Wizard_Down_0.png");
