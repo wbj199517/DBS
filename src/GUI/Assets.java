@@ -7,8 +7,10 @@ public class Assets {
     private static final int WIDTH=32,HEIGHT=32;
     public static BufferedImage TILE_GRASS,TILE_ROCK,TILE_DIRT,TILE_WALL;
     public static BufferedImage HERO_AXE,HERO_AM,HERO_CM;
-
+    public static BufferedImage MAIN_CHAR;
     public static void init(){
+        MAIN_CHAR = ImageLoader.loadImage("/textures/Shitty_Wizard.png");
+
         SpriteSheetLoader hero_sheet = new SpriteSheetLoader(ImageLoader.loadImage("/textures/hero_sheet.png"));
 
         HERO_AXE = hero_sheet.crop(0,0,WIDTH,HEIGHT);

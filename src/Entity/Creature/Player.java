@@ -37,6 +37,6 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-         g.drawImage(Assets.HERO_AXE, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+         g.drawImage(Assets.MAIN_CHAR, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }
 }
