@@ -12,7 +12,7 @@ public class GameCamera {
     public void checkBlankSpace() {
         if (xOffset < 0) {
             xOffset = 0;
-        } else if (xOffset > handler.getWorld().getWidth() * Tile.TILE_WIDTH - handler.getWidth()) {
+        } else if (xOffset > handler.getWorld().getWidth() * Tile.TILE_WIDTH - handler.getWidth() ) {
             xOffset = handler.getWorld().getWidth() * Tile.TILE_WIDTH - handler.getWidth();
         }
         if (yOffset < 0) {
