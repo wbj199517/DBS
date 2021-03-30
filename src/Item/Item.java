@@ -19,6 +19,7 @@ public class Item {
     protected String name;
     protected final int id;
     protected int x, y, count;
+    protected Rectangle bounds;
 
     public Item(BufferedImage texture, String name, int id) {
         this.texture = texture;
@@ -26,10 +27,14 @@ public class Item {
         this.id = id;
         count = 1;
         items[id] = this;
+        bounds = new Rectangle(x,y,ITEM_WIDTH,ITEM_HEIGHT);
     }
 
     public void tick() {
-
+        if(handler.getWorld().getEntityManager().getPlayer().getRectangleBounds(0f,0f).intersects(bounds)){
+            isPickUp=true;
+            handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
+        }
     }
 
     public void render(Graphics g) {
@@ -44,6 +49,8 @@ public class Item {
     public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
+        bounds.x =x;
+        bounds.y=y;
     }
 
     public Item createNew(int x, int y) {
@@ -105,5 +112,13 @@ public class Item {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isPickUp() {
+        return isPickUp;
+    }
+
+    public void setPickUp(boolean pickUp) {
+        isPickUp = pickUp;
     }
 }

@@ -5,13 +5,16 @@ import GUI.Animation;
 import GUI.Assets;
 import Game.Game;
 import Game.Handler;
+import Inventory.Inventory;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
     private int go;
+    private  Inventory inventory;
     //animation
+
     private Animation animationDown, animationUp, animationLeft, animationRight;
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     private Animation animationAttack;
@@ -26,6 +29,8 @@ public class Player extends Creature {
         animationUp = new Animation(300, Assets.PLAYER_UP);
         animationLeft = new Animation(300, Assets.PLAYER_LEFT);
         animationRight = new Animation(300, Assets.PLAYER_RIGHT);
+
+        inventory=new Inventory(handler);
     }
 
     @Override
@@ -41,6 +46,7 @@ public class Player extends Creature {
         handler.getGameCamera().centerOnEntity(this);
         //attack
         checkAttacks();
+        inventory.tick();
     }
 
     public void checkAttacks() {
@@ -144,6 +150,7 @@ public class Player extends Creature {
                 go=0;
             }
         }
+        inventory.render(g);
 //        g.setColor(Color.red);
 //        g.fillRect((int)(x+bounds.x-handler.getGameCamera().getxOffset()),(int)(y+bounds.y-handler.getGameCamera().getyOffset()),bounds.width,bounds.height);
     }
@@ -160,5 +167,9 @@ public class Player extends Creature {
         } else {
             return Assets.MAIN_CHAR;
         }
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }
