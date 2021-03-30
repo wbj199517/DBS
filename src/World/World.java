@@ -4,6 +4,7 @@ import Entity.Creature.Player;
 import Entity.EntityManager;
 import Entity.Static.Tree;
 import Game.Game;
+import Item.ItemManager;
 import Tile.Tile;
 import Utils.Utils;
 import Game.Handler;
@@ -15,10 +16,14 @@ public class World {
     private int spawnX, spawnY;
     private int[][] tiles_position;
     private EntityManager entityManager;
+    private ItemManager itemManager;
     public  World(Handler handler, String path) {
         this.handler = handler;
         entityManager = new EntityManager(handler,new Player(handler,100,100));
+        itemManager = new ItemManager(handler);
         entityManager.addEntity(new Tree(handler,100,200));
+        entityManager.addEntity(new Tree(handler,100,350));
+        entityManager.addEntity(new Tree(handler,100,500));
         loadWorld(path);
 
 //        entityManager.getPlayer().setX(spawnX);
@@ -26,6 +31,7 @@ public class World {
     }
 
     public void tick() {
+        itemManager.tick();
         entityManager.tick();  //loop through all entity, call every single entity.tick()
     }
 
@@ -41,6 +47,7 @@ public class World {
             }
         }
         //render entity
+        itemManager.render(g);
         entityManager.render(g);
     }
 
@@ -80,5 +87,13 @@ public class World {
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public ItemManager getItemManager() {
+        return itemManager;
+    }
+
+    public void setItemManager(ItemManager itemManager) {
+        this.itemManager = itemManager;
     }
 }

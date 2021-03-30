@@ -2,6 +2,7 @@ package Entity.Static;
 
 import GUI.Assets;
 import Game.Handler;
+import Item.Item;
 import Tile.Tile;
 
 import java.awt.*;
@@ -21,6 +22,7 @@ public class Tree extends StaticEntity{
     }
     public void die(){
         System.out.println("You cut a Tree!");
+        handler.getWorld().getItemManager().addItem(Item.woodItem.createNew((int)x,(int)y));
     }
     public void shake(){
         System.out.println("Tree is shaking");

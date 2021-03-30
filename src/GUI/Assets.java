@@ -11,7 +11,9 @@ public class Assets {
     public static BufferedImage ATTACK;
     public static BufferedImage[] PLAYER_DOWN, PLAYER_UP, PLAYER_LEFT, PLAYER_RIGHT;
     public static BufferedImage[] BUTTON_START;
+    public static BufferedImage WOOD_LOG;
     public static void init() {
+        WOOD_LOG = ImageLoader.loadImage("/textures/woodlog.png");
         ATTACK = ImageLoader.loadImage("/textures/attack.gif");
         MAIN_CHAR = ImageLoader.loadImage("/textures/Shitty_Wizard.png");
         BUTTON_START = new BufferedImage[2];
