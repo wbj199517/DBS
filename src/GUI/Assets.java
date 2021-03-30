@@ -8,9 +8,11 @@ public class Assets {
     public static BufferedImage TILE_GRASS, TILE_ROCK, TILE_DIRT, TILE_WALL,TILE_TREE;
     public static BufferedImage HERO_AXE, HERO_AM, HERO_CM;
     public static BufferedImage MAIN_CHAR;
+    public static BufferedImage ATTACK;
     public static BufferedImage[] PLAYER_DOWN, PLAYER_UP, PLAYER_LEFT, PLAYER_RIGHT;
     public static BufferedImage[] BUTTON_START;
     public static void init() {
+        ATTACK = ImageLoader.loadImage("/textures/attack.gif");
         MAIN_CHAR = ImageLoader.loadImage("/textures/Shitty_Wizard.png");
         BUTTON_START = new BufferedImage[2];
         BUTTON_START[0] = ImageLoader.loadImage("/textures/start_button_0.jpeg");

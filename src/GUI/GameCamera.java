@@ -9,7 +9,7 @@ public class GameCamera {
     private float xOffset, yOffset;   // total amount of adjusting all tiles
     private Handler handler;
 
-    public void checkBlankSpace() {
+    public void checkBlankSpace() {  //logic to prevent ugly white area outside world
         if (xOffset < 0) {
             xOffset = 0;
         } else if (xOffset > handler.getWorld().getWidth() * Tile.TILE_WIDTH - handler.getWidth() ) {

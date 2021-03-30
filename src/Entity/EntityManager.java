@@ -30,6 +30,9 @@ public class EntityManager {
         for (int i = 0; i < entites.size(); i++) {
             Entity e = entites.get(i);
             e.tick();
+            if(!e.active){
+                entites.remove(e);
+            }
         }
         entites.sort(renderSort);
     }

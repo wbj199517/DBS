@@ -19,6 +19,12 @@ public class Tree extends StaticEntity{
     public void tick() {
 
     }
+    public void die(){
+        System.out.println("You cut a Tree!");
+    }
+    public void shake(){
+        System.out.println("Tree is shaking");
+    }
 
     @Override
     public void render(Graphics g) {

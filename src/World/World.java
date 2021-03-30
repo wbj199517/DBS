@@ -26,7 +26,7 @@ public class World {
     }
 
     public void tick() {
-        entityManager.tick();
+        entityManager.tick();  //loop through all entity, call every single entity.tick()
     }
 
     public void render(Graphics g) {
@@ -34,12 +34,13 @@ public class World {
         int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth())/ Tile.TILE_WIDTH + 1);
         int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
         int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight())/ Tile.TILE_HEIGHT + 1);
-
+        //render tiles
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
                 getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
+        //render entity
         entityManager.render(g);
     }
 
