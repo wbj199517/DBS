@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 //Load sprite sheet and crop it and assign icon to variables.
 
@@ -11,8 +12,11 @@ public class Assets {
     public static BufferedImage ATTACK;
     public static BufferedImage[] PLAYER_DOWN, PLAYER_UP, PLAYER_LEFT, PLAYER_RIGHT;
     public static BufferedImage[] BUTTON_START;
-    public static BufferedImage WOOD_LOG;
+    public static BufferedImage WOOD_LOG,INVENTORY_SCREEN;
+    public static Font font28;
     public static void init() {
+        font28 = FontLoader.loadFont("resource/font/slkscr.ttf",28);
+        INVENTORY_SCREEN = ImageLoader.loadImage("/textures/inventoryScreen.png");
         WOOD_LOG = ImageLoader.loadImage("/textures/woodlog.png");
         ATTACK = ImageLoader.loadImage("/textures/attack.gif");
         MAIN_CHAR = ImageLoader.loadImage("/textures/Shitty_Wizard.png");

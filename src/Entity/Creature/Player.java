@@ -55,6 +55,7 @@ public class Player extends Creature {
         if (attackTimer < attackCooldown) { //attack still in cooldown;
             return;
         }
+        if(inventory.isActive())return;
         Rectangle cb = getRectangleBounds(0, 0);
         Rectangle ar = new Rectangle();
         int arSize = 20;
@@ -86,6 +87,7 @@ public class Player extends Creature {
                 return;
             }
         }
+
     }
 
     @Override
@@ -98,8 +100,10 @@ public class Player extends Creature {
     }
 
     private void getInput() {
+
         xMove = 0;
         yMove = 0;
+        if(inventory.isActive())return;
         if (handler.getKeyManager().up) {
             yMove = -speed;
         }
@@ -113,7 +117,9 @@ public class Player extends Creature {
             xMove = speed;
         }
     }
-
+    public void postRender(Graphics g){
+        inventory.render(g);
+    }
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
@@ -150,7 +156,7 @@ public class Player extends Creature {
                 go=0;
             }
         }
-        inventory.render(g);
+
 //        g.setColor(Color.red);
 //        g.fillRect((int)(x+bounds.x-handler.getGameCamera().getxOffset()),(int)(y+bounds.y-handler.getGameCamera().getyOffset()),bounds.width,bounds.height);
     }

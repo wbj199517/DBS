@@ -44,6 +44,7 @@ public class EntityManager {
         for (Entity e : entites) {
             e.render(g);
         }
+        player.postRender(g);
 
     }
 
